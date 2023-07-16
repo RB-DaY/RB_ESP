@@ -15,9 +15,9 @@ _G.KeyInput = "string"
 function MainHub()
     local randed = math.random(1,100)
     if randed <= 30 then
-         loadstring(game:HttpGet("https://raw.githubusercontent.com/RB-DaY/RB-DaY/main/stroge", true))()
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/RB-DaY/RB_ESP/main/stroge", true))()
     else
-         loadstring(game:HttpGet("https://raw.githubusercontent.com/RB-DaY/RB-DaY/main/NaniHub.lua", true))()
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/RB-DaY/RB_ESP/main/NaniHub.lua", true))()
     end
 end
 

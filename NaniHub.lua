@@ -9,7 +9,7 @@ local function Dex()
 end
 
 local function Esp()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/RB-DaY/RB-DaY/main/RB_ESP.lua", true))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/RB-DaY/RB_ESP/main/RB_ESP.lua", true))()
 end
 
 local function Fly()
@@ -17,11 +17,11 @@ local function Fly()
 end
 
 local function IJ()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/RB-DaY/RB-DaY/main/RB_InfJump.lua', true))()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/RB-DaY/RB_ESP/main/RB_InfJump.lua', true))()
 end
 
 local function CT()
-	loadstring(game:HttpGet('https://raw.githubusercontent.com/RB-DaY/RB-DaY/main/RB_CtrlTP.lua', true))()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/RB-DaY/RB_ESP/main/RB_CtrlTP.lua', true))()
 end
 
 local function Noclip()
