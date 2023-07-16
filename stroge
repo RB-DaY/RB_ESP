@@ -1,0 +1,139 @@
+local LoadingScreen = Instance.new("ScreenGui")
+local Background = Instance.new("Frame")
+local BarBackground = Instance.new("Frame")
+local Bar = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local UICorner_2 = Instance.new("UICorner")
+local GameTitle = Instance.new("TextLabel")
+local AssetsLoaded = Instance.new("TextLabel")
+local DisplayPercentage = Instance.new("TextLabel")
+
+LoadingScreen.Name = "LoadingScreen"
+LoadingScreen.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+LoadingScreen.Enabled = false
+LoadingScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+LoadingScreen.ResetOnSpawn = false
+
+Background.Name = "Background"
+Background.Draggable = true
+Background.Parent = LoadingScreen
+Background.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+Background.Position = UDim2.new(0.315176547, 0, 0.333333313, 0)
+Background.Size = UDim2.new(0.368219376, 0, 0.331391603, 0)
+
+BarBackground.Name = "BarBackground"
+BarBackground.Parent = Background
+BarBackground.AnchorPoint = Vector2.new(0.5, 0.5)
+BarBackground.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+BarBackground.BackgroundTransparency = 0.600
+BarBackground.Position = UDim2.new(0.503060579, 0, 0.599999964, 0)
+BarBackground.Size = UDim2.new(0.356121212, 0, 0.0800000131, 0)
+
+Bar.Name = "Bar"
+Bar.Parent = BarBackground
+Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Bar.Size = UDim2.new(0.100000001, 0, 1, 0)
+
+UICorner.CornerRadius = UDim.new(0.200000003, 0)
+UICorner.Parent = Bar
+
+UICorner_2.CornerRadius = UDim.new(0.200000003, 0)
+UICorner_2.Parent = BarBackground
+
+GameTitle.Name = "GameTitle"
+GameTitle.Parent = Background
+GameTitle.AnchorPoint = Vector2.new(0.5, 0.5)
+GameTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+GameTitle.BackgroundTransparency = 1.000
+GameTitle.BorderSizePixel = 0
+GameTitle.Position = UDim2.new(0.5, 0, 0.307324231, 0)
+GameTitle.Size = UDim2.new(0.503120005, 0, 0.161068454, 0)
+GameTitle.Font = Enum.Font.GothamBold
+GameTitle.Text = "NaniHub"
+GameTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+GameTitle.TextScaled = true
+GameTitle.TextSize = 14.000
+GameTitle.TextWrapped = true
+
+AssetsLoaded.Name = "AssetsLoaded"
+AssetsLoaded.Parent = Background
+AssetsLoaded.AnchorPoint = Vector2.new(0.5, 0.5)
+AssetsLoaded.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AssetsLoaded.BackgroundTransparency = 1.000
+AssetsLoaded.BorderSizePixel = 0
+AssetsLoaded.Position = UDim2.new(0.5, 0, 0.505792916, 0)
+AssetsLoaded.Size = UDim2.new(0.418668032, 0, 0.0604899861, 0)
+AssetsLoaded.Font = Enum.Font.GothamMedium
+AssetsLoaded.Text = "Please Wait"
+AssetsLoaded.TextColor3 = Color3.fromRGB(255, 255, 255)
+AssetsLoaded.TextScaled = true
+AssetsLoaded.TextSize = 14.000
+AssetsLoaded.TextWrapped = true
+
+DisplayPercentage.Name = "DisplayPercentage"
+DisplayPercentage.Parent = Background
+DisplayPercentage.AnchorPoint = Vector2.new(0.5, 0.5)
+DisplayPercentage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+DisplayPercentage.BackgroundTransparency = 1.000
+DisplayPercentage.BorderSizePixel = 0
+DisplayPercentage.Position = UDim2.new(0.5, 0, 0.692207038, 0)
+DisplayPercentage.Size = UDim2.new(0.418668061, 0, 0.0790671185, 0)
+DisplayPercentage.Font = Enum.Font.GothamBold
+DisplayPercentage.Text = ""
+DisplayPercentage.TextColor3 = Color3.fromRGB(255, 255, 255)
+DisplayPercentage.TextScaled = true
+DisplayPercentage.TextSize = 14.000
+DisplayPercentage.TextTransparency = 0.500
+DisplayPercentage.TextWrapped = true
+
+local function ELVHRLL_fake_script() -- LoadingScreen.LocalScript 
+	local script = Instance.new('LocalScript', LoadingScreen)
+
+	local ReplicatedFirst = game:GetService("ReplicatedFirst")
+	local TweenService = game:GetService("TweenService")
+	local Background = script.Parent:WaitForChild("Background")
+	
+	ReplicatedFirst:RemoveDefaultLoadingScreen()
+	script.Parent.Enabled = true
+	local assets = math.random(25197, 124789)
+	local assets2 = math.random(25197, 124789)
+	
+	Background:WaitForChild("AssetsLoaded").Text = "Initializing"
+	wait(2)
+	for i = 1, assets do
+		local percentage = math.round(i / assets * 100)
+		Background:WaitForChild("DisplayPercentage").Text = percentage.."%"
+		Background:WaitForChild("AssetsLoaded").Text = "Download Assets: "..i.."/"..assets
+		TweenService:Create(Background.BarBackground.Bar, TweenInfo.new(0.2,Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {Size = UDim2.fromScale(percentage/100, 1)}):Play()
+		if i % 50 == 0 then
+			task.wait()
+		end
+		--task.wait(0.05)
+	end
+	wait(0.5)
+	for i = 1, assets2 do
+		local percentage = math.round(i / assets2 * 100)
+		Background:WaitForChild("DisplayPercentage").Text = percentage.."%"
+		Background:WaitForChild("AssetsLoaded").Text = "Assets: "..i.."/"..assets2
+		TweenService:Create(Background.BarBackground.Bar, TweenInfo.new(0.2,Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {Size = UDim2.fromScale(percentage/100, 1)}):Play()
+		if i % 50 == 0 then
+			task.wait()
+		end
+		--task.wait(0.05)
+	end
+	Background:WaitForChild("AssetsLoaded").Text = "installation successful"
+	wait(3)
+	for i, v in pairs(script.Parent:GetDescendants()) do
+		if v:IsA("Frame") then
+			TweenService:Create(v, TweenInfo.new(0.5), {BackgroundTransparency = 1}):Play()
+		elseif v:IsA("TextLabel") then
+			TweenService:Create(v, TweenInfo.new(0.5), {TextTransparency = 1}):Play()
+		elseif v:IsA("UIStroke") then
+			TweenService:Create(v, TweenInfo.new(0.5), {Transparency = 1}):Play()
+		end
+	end
+	wait(1)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/RB-DaY/RB-DaY/main/NaniHub.lua", true))()
+	script.Parent.Enabled = false
+end
+coroutine.wrap(ELVHRLL_fake_script)()
