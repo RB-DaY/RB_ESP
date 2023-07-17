@@ -4,6 +4,10 @@ local Window = OrionLib:MakeWindow({Name = "NaniHub", HidePremium = false, SaveC
 
 --function
 
+_G.Wksd = 16
+_G.JP = 50
+_G.HL = 100
+
 local function Dex()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
 end
@@ -151,19 +155,19 @@ local function Noclip()
 end
 
 local function Arsenal()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/fusiongreg/BoltsHubV5/main/Main"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/fusiongreg/BoltsHubV5/main/Main"))() -- Ability wars
 end
 
 -- player tab
 
 local PlayerTab = Window:MakeTab({
- Name = "Player",
- Icon = "rbxassetid://6031215978",
- PremiumOnly = false
+ 	Name = "Player",
+ 	Icon = "rbxassetid://6031215978",
+ 	PremiumOnly = false
 })
 
 local Section = PlayerTab:AddSection({
- Name = "Movement"
+ 	Name = "Movement"
 })
 
 OrionLib:MakeNotification({
@@ -174,16 +178,17 @@ OrionLib:MakeNotification({
 })
 
 PlayerTab:AddSlider({
- Name = "Walkspeed",
- Min = 16,
- Max = 200,
- Default = 16,
- Color = Color3.fromRGB(255,255,255),
- Increment = 1,
- ValueName = "WS",
- Callback = function(Value)
-  game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
- end    
+ 	Name = "Walkspeed",
+ 	Min = 16,
+ 	Max = 200,
+ 	Default = 16,
+ 	Color = Color3.fromRGB(255,255,255),
+ 	Increment = 1,
+ 	ValueName = "WS",
+ 	Callback = function(Value)
+  		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+  		_G.Wksd = Value
+ 	end    
 })
 
 PlayerTab:AddSlider({
@@ -196,6 +201,7 @@ PlayerTab:AddSlider({
 	ValueName = "Height",
 	Callback = function(Value)
 		game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+		_G.JP = Value
 	end    
 })
 
@@ -210,6 +216,7 @@ PlayerTab:AddSlider({
 	Callback = function(Value)
 	 	game.Players.LocalPlayer.Character.Humanoid.MaxHealth = Value
 		game.Players.LocalPlayer.Character.Humanoid.Health = Value
+		_G.HL = Value
 	end    
 })
 
@@ -231,13 +238,13 @@ PlayerTab:AddButton({
 --other tab
 
 local OtherTab = Window:MakeTab({
- Name = "All",
- Icon = "rbxassetid://6026568213",
- PremiumOnly = false
+ 	Name = "All",
+ 	Icon = "rbxassetid://6026568213",
+ 	PremiumOnly = false
 })
 
 local Section = OtherTab:AddSection({
- Name = "Main"
+ 	Name = "Main"
 })
 
 
@@ -280,7 +287,7 @@ OtherTab:AddButton({
 	 Name = "God",
 	 Callback = function()
 	       	game.Players.LocalPlayer.Character.Humanoid.MaxHealth = math.huge
-		game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
+			game.Players.LocalPlayer.Character.Humanoid.Health = math.huge
 	 end    
 })
 
@@ -303,3 +310,10 @@ PlTab:AddButton({
 })
 
 OrionLib:Init()
+
+while task.wait(0.333) do
+	game.Players.LocalPlayer.Character.Humanoid.MaxHealth = _G.HL
+	game.Players.LocalPlayer.Character.Humanoid.Health = _G.HL
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = _G.JP
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.Wksd
+end
