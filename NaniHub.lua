@@ -309,11 +309,11 @@ PlTab:AddButton({
 	end    
 })
 
-OrionLib:Init()
-
 while task.wait(0.333) do
 	game.Players.LocalPlayer.Character.Humanoid.MaxHealth = _G.HL
 	game.Players.LocalPlayer.Character.Humanoid.Health = _G.HL
 	game.Players.LocalPlayer.Character.Humanoid.JumpPower = _G.JP
 	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = _G.Wksd
 end
+
+OrionLib:Init()
