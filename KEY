@@ -1,6 +1,0 @@
-local NaniKeyX = {
-	Key = "689as6fa8sg5214jwragsf8721",
-	System = true
-}
-
-return NaniKeyX
